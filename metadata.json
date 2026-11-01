@@ -1,0 +1,6 @@
+{
+  "name": "Misi: Jelajah Dunia Pekerjaan",
+  "description": "Game edukasi interaktif 3D petualangan untuk siswa kelas 4 SD mengenal berbagai jenis profesi, alat, tempat kerja, dan manfaatnya bagi masyarakat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
