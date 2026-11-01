@@ -3,6 +3,7 @@ import { Play, HelpCircle, Sparkles, Compass, User, Star, ChevronDown, Briefcase
 import { soundManager } from '../utils/audio';
 import { HomeProfessionShowcase } from './HomeProfessionShowcase';
 import { heroWorldMap, adventurerMascot } from '../assets/images';
+import { StudentRosterModal } from './StudentRosterModal';
 
 import { StudentRecord } from '../types/game';
 
@@ -20,13 +21,14 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
   students = []
 }) => {
   const [useCustomName, setUseCustomName] = useState(false);
+  const [isRosterModalOpen, setIsRosterModalOpen] = useState(false);
   const [selectedStudentId, setSelectedStudentId] = useState<string>(() => {
     const match = students.find(s => s.name.toLowerCase() === initialPlayerName?.toLowerCase());
     return match ? match.id : (students[0]?.id || '');
   });
   const [playerName, setPlayerName] = useState(() => {
     if (initialPlayerName && initialPlayerName !== 'Petualang Cilik') return initialPlayerName;
-    return students[0]?.name || 'Aisyah Zahra';
+    return students[0]?.name || 'Ahmad Fauzi';
   });
 
   useEffect(() => {
@@ -167,7 +169,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
             <div className="flex items-center justify-between mb-1.5">
               <label htmlFor="student-picker" className="text-xs font-bold text-amber-950 flex items-center gap-1.5">
                 <User className="w-4 h-4 text-amber-600" />
-                <span>Pilih Nama Siswa (Daftar Guru):</span>
+                <span>Pilih Nama Siswa (Sesuai Buku Nilai Guru):</span>
               </label>
               <button
                 type="button"
@@ -179,7 +181,33 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
             </div>
 
             {!useCustomName && students.length > 0 ? (
-              <div className="space-y-2">
+              <div className="space-y-2.5">
+                {/* Big Button to open full visual roster */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    soundManager.playClick();
+                    setIsRosterModalOpen(true);
+                  }}
+                  className="w-full py-2.5 px-3.5 bg-gradient-to-r from-amber-100 via-orange-100 to-amber-200 hover:from-amber-200 hover:to-orange-200 border-2 border-amber-400 rounded-2xl text-xs font-extrabold text-amber-950 flex items-center justify-between transition-all cursor-pointer shadow-xs active:scale-98"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">📋</span>
+                    <div className="text-left">
+                      <span className="block font-black text-amber-950 leading-tight">
+                        Lihat 10 Siswa Kelas (Buku Nilai Guru)
+                      </span>
+                      <span className="text-[10px] text-amber-800 font-medium">
+                        Klik untuk melihat foto, nilai, & ranking kelas
+                      </span>
+                    </div>
+                  </div>
+                  <span className="px-2.5 py-1 rounded-xl bg-amber-600 text-white text-[11px] font-black shadow-xs shrink-0">
+                    Buka Roster ➔
+                  </span>
+                </button>
+
+                {/* Quick Select Dropdown */}
                 <select
                   id="student-picker"
                   value={selectedStudentId}
@@ -194,9 +222,9 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
                   }}
                   className="w-full px-3.5 py-2.5 bg-amber-50/80 border-2 border-amber-300 rounded-2xl text-slate-800 font-bold text-xs sm:text-sm focus:outline-none focus:ring-4 focus:ring-amber-400/30 focus:border-amber-500 transition-all cursor-pointer"
                 >
-                  {students.map((s) => (
+                  {students.map((s, idx) => (
                     <option key={s.id} value={s.id}>
-                      👤 {s.name} ({s.classGroup}) — {s.totalScore} Poin · {s.medalTier}
+                      #{idx + 1} 👤 {s.name} ({s.classGroup}) — {s.totalScore} Poin · {s.medalTier.split(':')[0]}
                     </option>
                   ))}
                 </select>
@@ -206,15 +234,41 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
                   const sel = students.find((s) => s.id === selectedStudentId);
                   if (!sel) return null;
                   return (
-                    <div className="p-2.5 rounded-xl bg-amber-100/70 border border-amber-300 flex items-center justify-between text-xs">
-                      <div>
-                        <span className="font-extrabold text-amber-950">{sel.name}</span>
-                        <span className="text-[11px] text-amber-800 ml-1.5">Kelas {sel.classGroup}</span>
+                    <div className="p-3 rounded-2xl bg-gradient-to-br from-amber-100/90 to-orange-50 border-2 border-amber-300 flex flex-col gap-2 text-xs">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 rounded-lg bg-amber-500 text-white font-black text-xs flex items-center justify-center">
+                            ✓
+                          </span>
+                          <div>
+                            <span className="font-black text-slate-900 text-sm block leading-tight">
+                              {sel.name}
+                            </span>
+                            <span className="text-[10px] text-slate-500 font-bold">
+                              Kelas {sel.classGroup} · Guru: Pak Faizal, S.Pd.
+                            </span>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <span className="font-black font-display text-base text-amber-950 block">
+                            {sel.totalScore} Poin
+                          </span>
+                          <span className="text-[10px] font-bold text-amber-700 flex items-center gap-0.5 justify-end">
+                            <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                            {sel.earnedStars} Bintang
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-amber-900">{sel.totalScore} Poin</span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-200 text-amber-900">
-                          {sel.medalTier}
+
+                      <div className="pt-2 border-t border-amber-200/80 flex items-center justify-between text-[11px]">
+                        <span className="px-2 py-0.5 rounded-full bg-white text-amber-900 font-extrabold text-[10px] border border-amber-300">
+                          {sel.medalTier.split(':')[0]}
+                        </span>
+                        <span className="text-slate-600 font-bold text-[10px]">
+                          {sel.visitedProfessionsCount} / 8 Pos Telah Dijelajahi
+                        </span>
+                        <span className="text-[10px] font-bold text-emerald-700">
+                          {sel.status}
                         </span>
                       </div>
                     </div>
@@ -246,7 +300,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
               className="flex-1 py-3 px-6 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white font-black text-sm sm:text-base rounded-2xl shadow-lg hover:from-amber-600 hover:to-orange-600 hover:scale-102 active:scale-95 transition-all flex items-center justify-center gap-2 group cursor-pointer"
             >
               <Play className="w-5 h-5 fill-white transition-transform group-hover:scale-110" />
-              <span>MASUK PETUALANGAN</span>
+              <span>MULAI: {playerName} 🚀</span>
             </button>
 
             <button
@@ -281,6 +335,18 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
           }}
         />
       </div>
+
+      {/* Modal: Full Student Roster (Buku Nilai Guru) */}
+      <StudentRosterModal
+        isOpen={isRosterModalOpen}
+        onClose={() => setIsRosterModalOpen(false)}
+        students={students}
+        selectedStudentId={selectedStudentId}
+        onSelectStudent={(s) => {
+          setSelectedStudentId(s.id);
+          setPlayerName(s.name);
+        }}
+      />
 
       {/* Footer safe margin */}
       <footer className="relative z-10 text-center text-xs text-amber-950/80 font-medium py-4">
