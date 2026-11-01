@@ -4,6 +4,7 @@ import { PlayerProgress } from '../types/game';
 import { getMedalTier } from '../game/rules';
 import { soundManager } from '../utils/audio';
 import { fireChampionshipConfetti } from '../utils/confetti';
+import { goldenTrophyCert } from '../assets/images';
 
 interface CertificateModalProps {
   progress: PlayerProgress;
@@ -83,7 +84,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           <div className="relative z-10 flex flex-col items-center">
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-amber-400 shadow-lg bg-amber-100 mb-3 animate-float-soft">
               <img
-                src="/src/assets/images/golden_trophy_certificate_1793417254442.jpg"
+                src={goldenTrophyCert}
                 alt="Piala Penghargaan Penjelajah"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

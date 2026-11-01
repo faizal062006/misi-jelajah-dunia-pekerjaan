@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Play, HelpCircle, Sparkles, Compass, User, Star, ChevronDown, Briefcase } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 import { HomeProfessionShowcase } from './HomeProfessionShowcase';
+import { heroWorldMap, adventurerMascot } from '../assets/images';
 
 import { StudentRecord } from '../types/game';
 
@@ -128,7 +129,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
           <div className="md:col-span-8 relative group">
             <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-amber-100 aspect-video">
               <img
-                src="/src/assets/images/hero_world_map_1793417254162.jpg"
+                src={heroWorldMap}
                 alt="Peta 3D Pulau Profesi Dunia Pekerjaan"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"
@@ -145,7 +146,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
           <div className="md:col-span-4 flex flex-col items-center">
             <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl overflow-hidden border-4 border-amber-300 shadow-2xl bg-white animate-float-soft">
               <img
-                src="/src/assets/images/adventurer_mascot_1793417254965.jpg"
+                src={adventurerMascot}
                 alt="Karakter Penjelajah Cilik"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

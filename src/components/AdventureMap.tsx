@@ -25,6 +25,7 @@ import { PROFESSIONS_DATA } from '../data/professions';
 import { getMedalTier, calculateProgress } from '../game/rules';
 import { soundManager } from '../utils/audio';
 import { SUBJECT_METADATA, SUBJECTS_LIST } from '../data/subjectCurriculum';
+import { heroWorldMap, adventurerMascot } from '../assets/images';
 
 interface AdventureMapProps {
   progress: PlayerProgress;
@@ -115,7 +116,7 @@ export const AdventureMap: React.FC<AdventureMapProps> = ({
         <div className="flex items-center gap-3 w-full md:w-auto">
           <div className="relative w-12 h-12 rounded-2xl overflow-hidden border-2 border-amber-400 bg-amber-100 shadow-sm shrink-0">
             <img
-              src="/src/assets/images/adventurer_mascot_1793417254965.jpg"
+              src={adventurerMascot}
               alt="Avatar Penjelajah"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -380,7 +381,7 @@ export const AdventureMap: React.FC<AdventureMapProps> = ({
       <div className="relative w-full rounded-3xl overflow-hidden border-4 border-amber-300 shadow-2xl bg-amber-100 aspect-[16/10] sm:aspect-[16/9]">
         {/* Background 3D Diorama Image */}
         <img
-          src="/src/assets/images/hero_world_map_1793417254162.jpg"
+          src={heroWorldMap}
           alt="Peta 3D Pulau Petualangan Dunia Pekerjaan"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"

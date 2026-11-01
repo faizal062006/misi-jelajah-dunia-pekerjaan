@@ -13,6 +13,7 @@ import { PlayerProgress } from '../types/game';
 import { getMedalTier } from '../game/rules';
 import { soundManager } from '../utils/audio';
 import { fireGrandCelebrationConfetti } from '../utils/confetti';
+import { adventurerMascot, professionsMontage } from '../assets/images';
 
 interface EndingScreenProps {
   progress: PlayerProgress;
@@ -54,7 +55,7 @@ export const EndingScreen: React.FC<EndingScreenProps> = ({
         {/* Mascot Avatar */}
         <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-3xl overflow-hidden border-4 border-amber-400 shadow-xl bg-white shrink-0 animate-float-soft">
           <img
-            src="/src/assets/images/adventurer_mascot_1793417254965.jpg"
+            src={adventurerMascot}
             alt="Boni Penjelajah Cilik"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -81,7 +82,7 @@ export const EndingScreen: React.FC<EndingScreenProps> = ({
       {/* Montage of Professions */}
       <div className="rounded-3xl overflow-hidden border-3 border-amber-200 shadow-md aspect-[16/8] sm:aspect-[16/7] relative my-4">
         <img
-          src="/src/assets/images/professions_team_montage_1793417256445.jpg"
+          src={professionsMontage}
           alt="Sahabat Seluruh Profesi Masyarakat"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
