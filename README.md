@@ -8,9 +8,11 @@
 
 ---
 
-## 🌐 Tautan Aplikasi Siap Pakai (Live Web App)
-Aplikasi game edukasi ini telah aktif dan dapat langsung diakses melalui browser:
-* **🔗 Link Permainan Siswa & Guru (Shared App URL):**  
+## 🌐 Tautan Aplikasi Siap Pakai (Bisa Dibuka Siapapun 24/7)
+Aplikasi game edukasi ini online, bebas diakses siapapun tanpa login akun Google/GitHub, dan bebas error:
+* **🚀 Link Utama GitHub Pages (Permanen & Publik Tanpa Sleep):**  
+  👉 **[https://faizal062006.github.io/misi-jelajah-dunia-pekerjaan/](https://faizal062006.github.io/misi-jelajah-dunia-pekerjaan/)**
+* **🔗 Link Cloud Server Preview (Shared App URL):**  
   👉 **[https://ais-pre-2riwafnngjascbhnlor5kd-17302830254.asia-northeast1.run.app](https://ais-pre-2riwafnngjascbhnlor5kd-17302830254.asia-northeast1.run.app)**
 * **🛠️ Link Lingkungan Pengembang (Dev App URL):**  
   👉 **[https://ais-dev-2riwafnngjascbhnlor5kd-17302830254.asia-northeast1.run.app](https://ais-dev-2riwafnngjascbhnlor5kd-17302830254.asia-northeast1.run.app)**
